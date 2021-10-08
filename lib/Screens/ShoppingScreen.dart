@@ -58,14 +58,10 @@ class ShoppingScreen extends StatelessWidget {
             crossAxisSpacing: 10
           ),
           itemBuilder: (cx,i)=>
-             GestureDetector(
-               onTap: (){
-                 print(
-                     myProductList[i].title
-                 );
-               },
-                 child:
-                 GridViewItem(myProductList[i]),
+             GridViewItem(myProductList[i],
+                 (){
+                    print("ok") ;
+                 }
              ),
       )
     );
