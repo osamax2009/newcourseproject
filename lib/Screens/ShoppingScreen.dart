@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/Models/Product.dart';
+import '/Components/GridViewItem.dart';
+import '/Models/Product.dart';
 
 class ShoppingScreen extends StatelessWidget {
   //const ShoppingScreen({Key? key}) : super(key: key);
@@ -48,6 +49,7 @@ class ShoppingScreen extends StatelessWidget {
         title: Text("my Shopping List"),
       ),
       body: GridView.builder(
+         padding: EdgeInsets.all(10),
         itemCount: myProductList.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -56,9 +58,15 @@ class ShoppingScreen extends StatelessWidget {
             crossAxisSpacing: 10
           ),
           itemBuilder: (cx,i)=>
-              Image(
-            image: NetworkImage(myProductList[i].imageUrl! ),
-          ),
+             GestureDetector(
+               onTap: (){
+                 print(
+                     myProductList[i].title
+                 );
+               },
+                 child:
+                 GridViewItem(myProductList[i]),
+             ),
       )
     );
   }
