@@ -14,9 +14,7 @@ class GridViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  GestureDetector(
-      onTap: (){
-        press;
-      },
+      onTap: press,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: GridTile(

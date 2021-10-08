@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/Screens/DetailsScreen.dart';
 import '/Components/GridViewItem.dart';
 import '/Models/Product.dart';
 
@@ -60,7 +61,12 @@ class ShoppingScreen extends StatelessWidget {
           itemBuilder: (cx,i)=>
              GridViewItem(myProductList[i],
                  (){
-                    print("ok") ;
+                   Navigator.push(context, 
+                   MaterialPageRoute(builder: 
+                   (context)=>DetailsScreen(myProductList[i])
+                   ),
+                   
+                   );
                  }
              ),
       )
