@@ -1,22 +1,26 @@
+
 import 'package:flutter/foundation.dart';
 
-
 class Product {
-  String? id ;
-  String? title;
-  String? description;
-  double? price ;
-  String? imageUrl;
-  bool  isFavoirit  ;
-  Product({
-   @required this.id,
-    @required  this.title,
-    @required   this.description,
-    @required   this.price,
-    @required    this.imageUrl,
-    this.isFavoirit = false
 
-  });
+ final  String? id  ;
+ final  String? title;
+ final  String? description;
+ final   double? price;
+ final  String? imageUrl;
+ bool isFav  ;
+
+ Product(
+      {
+     @required this.id,
+     @required this.title,
+     @required this.imageUrl,
+     @required  this.price,
+     @required  this.description,
+      this.isFav = false
+      }
+      );
+
 
 
 }
