@@ -51,8 +51,19 @@ var myProducts = [
 
     ),
       body: GridView.builder(
-          gridDelegate: gridDelegate,
-          itemBuilder: itemBuilder
+
+        itemCount: myProducts.length,
+
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              mainAxisSpacing: 10, // virtically
+            crossAxisSpacing: 10, // horizantally
+            crossAxisCount: 2 ,
+            childAspectRatio: 3/2
+
+          ),
+          itemBuilder:(cx , i )=> Image(
+            image:NetworkImage(myProducts[i].imageUrl ?? "" ) ,
+          )
       ),
     );
   }
