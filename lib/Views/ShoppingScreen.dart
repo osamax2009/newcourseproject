@@ -51,7 +51,7 @@ var myProducts = [
 
     ),
       body: GridView.builder(
-
+          padding: EdgeInsets.all(10),
         itemCount: myProducts.length,
 
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -61,8 +61,24 @@ var myProducts = [
             childAspectRatio: 3/2
 
           ),
-          itemBuilder:(cx , i )=> Image(
-            image:NetworkImage(myProducts[i].imageUrl ?? "" ) ,
+          itemBuilder:(cx , i )=> ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child:
+            GridTile(
+              child: Image(
+                image:NetworkImage(myProducts[i].imageUrl ?? "" ) ,
+                fit: BoxFit.fill,
+              ),
+              footer: GridTileBar(
+                backgroundColor: Colors.black45,
+                leading: Icon(Icons.favorite , color: Colors.orange,),
+                trailing:Icon(Icons.shopping_cart , color: Colors.orange,),
+               title: Text(myProducts[i].title ?? "",
+                textAlign: TextAlign.center,
+                style: TextStyle(color:Colors.orange ),
+               ),
+              ),
+            ),
           )
       ),
     );
