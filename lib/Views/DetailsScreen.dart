@@ -17,8 +17,10 @@ class DetailsScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
+           alignment: Alignment.center,
             margin: EdgeInsets.all(10),
             height: MediaQuery.of(context).size.height * 0.5,
+            width: double.infinity,
             decoration: BoxDecoration(
 
               border: Border.all(
@@ -31,8 +33,11 @@ class DetailsScreen extends StatelessWidget {
             child: Image(image: NetworkImage(
                 singleProduct.imageUrl ?? ""
             ),
+              fit: BoxFit.contain,
             ),
-          )
+          ),
+          Text(singleProduct.description ?? ""),
+          Text(singleProduct.price.toString() )
         ],
       ),
 
