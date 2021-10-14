@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/Components/ItemShow.dart';
 import 'package:untitled2/Models/Product.dart';
+import 'package:untitled2/Views/DetailsScreen.dart';
 
 
 class ShoppingScreen extends StatelessWidget {
@@ -62,10 +63,16 @@ var myProducts = [
             childAspectRatio: 3/2
 
           ),
-          itemBuilder:(cx , i )=> ItemShow(singleProduct: myProducts[i],
-              (){
-                Navigator.push(context, route)
-              }
+          itemBuilder:(cx , i )=> ItemShow(
+            singleProduct: myProducts[i],
+             press:(){
+            Navigator.push(
+              context,
+                MaterialPageRoute(builder: (context)=>DetailsScreen(myProducts[i])
+                  ),
+
+                );
+             } ,
           ),
       ),
     );
