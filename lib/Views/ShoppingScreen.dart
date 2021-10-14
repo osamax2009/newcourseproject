@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/Components/ItemShow.dart';
 import 'package:untitled2/Models/Product.dart';
 
 
@@ -61,25 +62,11 @@ var myProducts = [
             childAspectRatio: 3/2
 
           ),
-          itemBuilder:(cx , i )=> ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child:
-            GridTile(
-              child: Image(
-                image:NetworkImage(myProducts[i].imageUrl ?? "" ) ,
-                fit: BoxFit.fill,
-              ),
-              footer: GridTileBar(
-                backgroundColor: Colors.black45,
-                leading: Icon(Icons.favorite , color: Colors.orange,),
-                trailing:Icon(Icons.shopping_cart , color: Colors.orange,),
-               title: Text(myProducts[i].title ?? "",
-                textAlign: TextAlign.center,
-                style: TextStyle(color:Colors.orange ),
-               ),
-              ),
-            ),
-          )
+          itemBuilder:(cx , i )=> ItemShow(singleProduct: myProducts[i],
+              (){
+                Navigator.push(context, route)
+              }
+          ),
       ),
     );
   }
