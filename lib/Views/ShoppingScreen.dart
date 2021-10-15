@@ -6,7 +6,7 @@ import 'package:untitled2/Views/DetailsScreen.dart';
 
 class ShoppingScreen extends StatelessWidget {
  // const ShoppingScreen({Key? key}) : super(key: key);
-
+    static String  routeName = "Shopping" ;
 
 var myProducts = [
 
