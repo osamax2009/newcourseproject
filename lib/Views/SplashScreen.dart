@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/Components/DefultButton.dart';
+import 'package:untitled2/Components/DefaultButton.dart';
 import 'package:untitled2/Views/ShoppingScreen.dart';
 
 
@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                DefultButton(
+                DefaultButton(
                   press:  (){
                     Navigator.pushNamed(  context, ShoppingScreen.routeName);
                   },

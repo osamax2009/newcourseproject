@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 
 
-class DefultButton extends StatelessWidget {
-   DefultButton({
+class DefaultButton extends StatelessWidget {
+  DefaultButton({
    this.press,
      this.myText,
      this.myColor
