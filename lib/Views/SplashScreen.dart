@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:untitled2/Components/DefaultButton.dart';
+import 'package:untitled2/Constants.dart';
 import 'package:untitled2/Views/ShoppingScreen.dart';
 
 
@@ -37,7 +38,7 @@ class SplashScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 5,
-                    color: Colors.orange
+                    color: kPrimaryColor
                   ),
                   borderRadius: BorderRadius.circular(18)
                 ),
