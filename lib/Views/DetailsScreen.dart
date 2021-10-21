@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/Components/ItemShow.dart';
 import 'package:untitled2/Models/Product.dart';
-import 'package:untitled2/Provider/Product.dart';
+import 'package:untitled2/Provider/Products.dart';
 
 
 class DetailsScreen extends StatelessWidget {
-
 
 
 
@@ -16,10 +15,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-
-
-    var myProducts = Provider.of<Products>(context).myProduct;
-
+    var myProducts = Provider.of<Products>(context).myProducts ;
 
     return Scaffold(
       appBar: AppBar(

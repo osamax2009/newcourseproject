@@ -1,12 +1,12 @@
 
+
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:untitled2/Models/Product.dart';
 
 class Products with ChangeNotifier {
 
-  List<Product>   _myProduct = [
-
+  List<Product>  _myProducts = [
     Product(
       id: 'p1',
       title: 'Red Shirt',
@@ -39,13 +39,13 @@ class Products with ChangeNotifier {
       imageUrl:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     ),
+
   ] ;
 
+  List<Product> get myProducts {
 
-  List<Product> get myProduct {
-    return _myProduct ;
+    return _myProducts ;
   }
-
 
 
 
