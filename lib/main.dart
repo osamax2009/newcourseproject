@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled2/Provider/Product.dart';
 import 'package:untitled2/Routes.dart';
 import 'package:untitled2/Views/SplashScreen.dart';
 
@@ -14,12 +16,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      //home: SplashScreen(),
-      theme: myTheme(),
-      routes: Routes,
-      initialRoute: SplashScreen.routeName ,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context)=> Products())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        //home: SplashScreen(),
+        theme: myTheme(),
+        routes: Routes,
+        initialRoute: SplashScreen.routeName ,
+      ),
     );
   }
 }
