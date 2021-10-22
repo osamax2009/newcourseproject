@@ -21,18 +21,28 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
 
  var   windowHeight = MediaQuery.of(context).size.height ;
+ var   windowHeight2 = MediaQuery.of(context).size.height ;
  Color  firstColor  = Colors.white ;
-
+ Color  secondColor  = Colors.blue ;
 
 
     switch(_pageState) {
       case 0 :
         windowHeight = MediaQuery.of(context).size.height  ;
+        windowHeight2 = MediaQuery.of(context).size.height ;
         firstColor  = Colors.white ;
         break;
       case 1 :
-        windowHeight = MediaQuery.of(context).size.height -500 ;
+        windowHeight = MediaQuery.of(context).size.height -700 ;
+        windowHeight2 = MediaQuery.of(context).size.height ;
         firstColor = Colors.yellow ;
+
+        break;
+      case 2 :
+        windowHeight = MediaQuery.of(context).size.height -700 ;
+        windowHeight2 = MediaQuery.of(context).size.height - 500 ;
+        firstColor = Colors.yellow ;
+          secondColor  = Colors.blue ;
 
         break;
     }
@@ -103,14 +113,67 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               AnimatedContainer(
+                decoration: BoxDecoration(
+                    color: secondColor,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(25),
+                    topLeft: Radius.circular(25),
+                  )
+                ),
                 curve: Curves.decelerate,
                 duration: Duration(milliseconds: 500),
                 transform: Matrix4.translationValues(0,
                     windowHeight
                     , 1) ,
             //    height: MediaQuery.of(context).size.height,
-                color: Colors.white,
-              )
+                child: Column(
+                  children: [
+                    DefaultButton(
+                      press: (){
+                        setState(() {
+                          _pageState = 2 ;
+                        });
+                      },
+                      myText: "Back to login...",
+                      myColor: Colors.purple,
+                    ),
+                    DefaultButton(
+                      press: (){},
+                      myText: "Register",
+                      myColor: Colors.purple,
+                    )
+                  ],
+                ),
+              ), /// for register
+              AnimatedContainer(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(25),
+                      topLeft: Radius.circular(25),
+                    )
+                ),
+                curve: Curves.decelerate,
+                duration: Duration(milliseconds: 500),
+                transform: Matrix4.translationValues(0,
+                    windowHeight2
+                    , 1) ,
+                //    height: MediaQuery.of(context).size.height,
+                child: Column(
+                  children: [
+                    DefaultButton(
+                      press: (){},
+                      myText: "Back to login...",
+                      myColor: Colors.purple,
+                    ),
+                    DefaultButton(
+                      press: (){},
+                      myText: "Register",
+                      myColor: Colors.purple,
+                    )
+                  ],
+                ),
+              ) /// for login
             ],
           ),
         ),
