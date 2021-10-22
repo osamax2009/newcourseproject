@@ -152,7 +152,8 @@ class _SplashScreenState extends State<SplashScreen> {
                           ),
                           border: InputBorder.none ,
 
-                          hintText: "enter your Email"
+                          hintText: "enter your Email",
+                            prefixIcon: Icon(Icons.person)
                         ),
                       ),
                       TextField(
@@ -164,7 +165,8 @@ class _SplashScreenState extends State<SplashScreen> {
                             ),
                             border: InputBorder.none ,
 
-                            hintText: "Password"
+                            hintText: "Password",
+                          prefixIcon: Icon(Icons.password)
                         ),
                       ),
                       DefaultButton(
@@ -193,14 +195,43 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Column(
                   children: [
                     DefaultButton(
-                      press: (){},
-                      myText: "Back to login...",
-                      myColor: Colors.purple,
+                      press: (){
+                        setState(() {
+                          _pageState = 2 ;
+                        });
+                      },
+                      myText: "Back to register...",
+                      myColor: Colors.orange,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 20
+                          ),
+                          border: InputBorder.none ,
+
+                          hintText: "enter your Email",
+                          prefixIcon: Icon(Icons.person)
+                      ),
+                    ),
+                    TextField(
+                      obscureText: true,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 20
+                          ),
+                          border: InputBorder.none ,
+
+                          hintText: "Password",
+                          prefixIcon: Icon(Icons.password)
+                      ),
                     ),
                     DefaultButton(
                       press: (){},
-                      myText: "Register",
-                      myColor: Colors.purple,
+                      myText: "Login",
+                      myColor: Colors.orange,
                     )
                   ],
                 ),
