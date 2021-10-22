@@ -36,11 +36,11 @@ class _SplashScreenState extends State<SplashScreen> {
         windowHeight = MediaQuery.of(context).size.height -700 ;
         windowHeight2 = MediaQuery.of(context).size.height ;
         firstColor = Colors.yellow ;
-
+        secondColor = Colors.white ;
         break;
       case 2 :
         windowHeight = MediaQuery.of(context).size.height -700 ;
-        windowHeight2 = MediaQuery.of(context).size.height - 500 ;
+        windowHeight2 = MediaQuery.of(context).size.height - 650 ;
         firstColor = Colors.yellow ;
           secondColor  = Colors.blue ;
 
@@ -112,37 +112,68 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                 ),
               ),
-              AnimatedContainer(
-                decoration: BoxDecoration(
-                    color: secondColor,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(25),
-                    topLeft: Radius.circular(25),
-                  )
-                ),
-                curve: Curves.decelerate,
-                duration: Duration(milliseconds: 500),
-                transform: Matrix4.translationValues(0,
-                    windowHeight
-                    , 1) ,
-            //    height: MediaQuery.of(context).size.height,
-                child: Column(
-                  children: [
-                    DefaultButton(
-                      press: (){
-                        setState(() {
-                          _pageState = 2 ;
-                        });
-                      },
-                      myText: "Back to login...",
-                      myColor: Colors.purple,
-                    ),
-                    DefaultButton(
-                      press: (){},
-                      myText: "Register",
-                      myColor: Colors.purple,
+              GestureDetector(
+                onTap: (){
+                  setState(() {
+                    _pageState= 1 ;
+                  });
+                },
+                child: AnimatedContainer(
+                  padding: EdgeInsets.all(25),
+                  decoration: BoxDecoration(
+                      color: secondColor,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(25),
+                      topLeft: Radius.circular(25),
                     )
-                  ],
+                  ),
+                  curve: Curves.decelerate,
+                  duration: Duration(milliseconds: 500),
+                  transform: Matrix4.translationValues(0,
+                      windowHeight
+                      , 1) ,
+            //    height: MediaQuery.of(context).size.height,
+                  child: Column(
+                    children: [
+                      DefaultButton(
+                        press: (){
+                          setState(() {
+                            _pageState = 2 ;
+                          });
+                        },
+                        myText: "Back to login...",
+                        myColor: Colors.purple,
+                      ),
+                      TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 20
+                          ),
+                          border: InputBorder.none ,
+
+                          hintText: "enter your Email"
+                        ),
+                      ),
+                      TextField(
+                        obscureText: true,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 20
+                            ),
+                            border: InputBorder.none ,
+
+                            hintText: "Password"
+                        ),
+                      ),
+                      DefaultButton(
+                        press: (){},
+                        myText: "Register",
+                        myColor: Colors.purple,
+                      )
+                    ],
+                  ),
                 ),
               ), /// for register
               AnimatedContainer(
