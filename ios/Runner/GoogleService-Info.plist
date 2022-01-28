@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>697905502816-obm12n6d0oi7f8e6e5pnen65mv28277u.apps.googleusercontent.com</string>
+	<string>626051786079-ftkrkqnqiqovkn3fabe6egk4c21ou7if.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.697905502816-obm12n6d0oi7f8e6e5pnen65mv28277u</string>
+	<string>com.googleusercontent.apps.626051786079-ftkrkqnqiqovkn3fabe6egk4c21ou7if</string>
 	<key>API_KEY</key>
-	<string>AIzaSyC6T5DzPDHeEEgtUPGkJDz14JV1V-po2jc</string>
+	<string>AIzaSyCP7vFoGxEjXVohulaK9lm2K4J3abHYqJw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>697905502816</string>
+	<string>626051786079</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.untitled2</string>
 	<key>PROJECT_ID</key>
-	<string>onlineflutter</string>
+	<string>osamafinal-a60e4</string>
 	<key>STORAGE_BUCKET</key>
-	<string>onlineflutter.appspot.com</string>
+	<string>osamafinal-a60e4.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:697905502816:ios:e535524d80db173da70105</string>
+	<string>1:626051786079:ios:546c5276fa2b1335b442ea</string>
 </dict>
 </plist>
