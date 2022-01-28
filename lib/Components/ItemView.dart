@@ -21,7 +21,10 @@ class ItemView extends StatelessWidget {
           ),
           footer: GridTileBar(
             backgroundColor: Colors.black87,
-            title:Text(product.title , style: TextStyle(color: Colors.orange , fontSize: 16),) ,
+            leading: Icon(Icons.thumb_up , color: Colors.orange,),
+            title:Center(child: Text(product.title , style: TextStyle(color: Colors.orange , fontSize: 16),)) ,
+            trailing: Icon(Icons.add_shopping_cart_sharp , color: Colors.orange,),
+
           ),
         )
     );
