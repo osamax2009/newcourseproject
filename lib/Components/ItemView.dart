@@ -15,8 +15,15 @@ class ItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
         borderRadius: BorderRadius.circular(15),
-        child: Image.network(product.imageUrl,
-          fit: BoxFit.fill ,)
+        child: GridTile(
+          child: Image.network(product.imageUrl,
+            fit: BoxFit.fill ,
+          ),
+          footer: GridTileBar(
+            backgroundColor: Colors.black87,
+            title:Text(product.title , style: TextStyle(color: Colors.orange , fontSize: 16),) ,
+          ),
+        )
     );
   }
 }
