@@ -1,10 +1,33 @@
-import 'package:flutter/material.dart';
-import 'package:untitled2/Screens/Home.dart';
 
-void main() {
+
+import 'package:flutter/material.dart';
+
+import 'HomePage.dart';
+
+
+void main(){
   runApp(
-    MaterialApp(
-      home: Home()
-    ),
+      MyApp()
   );
 }
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.dark
+      ) ,
+      home: HomePage(),
+    );
+  }
+}
+
+
+
+
+
