@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'LoginForm.dart';
+import 'RegisterForm.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -153,7 +154,7 @@ class _SplashScreenState extends State<SplashScreen> {
               AnimatedContainer(
                 duration: Duration(milliseconds: 400),
                 transform: Matrix4.translationValues(1, registerScreenHeight, 0),
-                color: Colors.blue,
+                color: Colors.amber,
                 child: Column(
                   children: [
                     Container(
@@ -179,7 +180,9 @@ class _SplashScreenState extends State<SplashScreen> {
                           },
                           child: Text(" back to login")
                       ),
-                    )
+                    ),
+                    RegisterForm()
+
                   ],
                 ),
               )
