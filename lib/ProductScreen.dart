@@ -69,13 +69,29 @@ class _ProductScreenState extends State<ProductScreen> {
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
+            childAspectRatio: 3/2
             
           ),
           
           
           
           
-          itemBuilder: (context , i)=>Image.network(myProductList[i].imageUrl)
+          itemBuilder: (context , i)=>ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: GridTile(
+
+                child: Image.network(myProductList[i].imageUrl,
+                    fit: BoxFit.fill,
+                  ),
+
+                footer: GridTileBar(
+                  backgroundColor: Colors.black54,
+                  title: Text(myProductList[i].title),
+                ),
+
+              )
+          
+          )
       
       ),
       
