@@ -86,7 +86,19 @@ class _ProductScreenState extends State<ProductScreen> {
 
                 footer: GridTileBar(
                   backgroundColor: Colors.black54,
-                  title: Text(myProductList[i].title),
+                  title: Text(myProductList[i].title ,
+                      style: TextStyle(
+                        color: Colors.orange,
+                        fontSize: 18
+                      ),
+                    textAlign: TextAlign.center,
+                    ),
+                  trailing: Icon(
+                    Icons.shopping_cart_rounded, color: Colors.orange ,
+                  ),
+                  leading:Icon(
+                    Icons.favorite, color: Colors.orange ,
+                  ),
                 ),
 
               )
