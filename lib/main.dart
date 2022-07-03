@@ -1,15 +1,9 @@
-
-
-
-
 import 'package:flutter/material.dart';
+import 'package:untitled2/Screens/HomeSceen.dart';
 
-import 'ProductScreen.dart';
-void main(){
-    runApp(MyApp());
+void main() {
+  runApp(MyApp());
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -17,11 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ProductScreen(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: "my Test App",
+        home: HomeScreen());
   }
 }
-
-
-
-
