@@ -22,6 +22,25 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
 
+
+              Card(
+                margin: EdgeInsets.all(15),
+                elevation: 2,
+                child: Container(
+                    margin: EdgeInsets.all(15),
+                    height: 40,
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+                        Text(myPerson.name),
+                        Text(myPerson.id),
+                      ],
+                    )
+
+                ),
+              )
+
+
           ],
         ),
       )
