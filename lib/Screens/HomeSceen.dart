@@ -6,8 +6,13 @@ import '../Models/Person.dart';
 class HomeScreen extends StatelessWidget {
    HomeScreen({Key? key}) : super(key: key);
 
-  Person myPerson = Person("84574398", "alic manson", 170, Colors.blue);
 
+  var myList =[
+   Person("84574398", "alic manson", 170, Colors.blue),
+   Person("75493875", "ali mohmed", 170, Colors.yellow),
+   Person("84574398", "noor  mahdy", 170, Colors.orange)
+
+  ];
 
 
 
@@ -23,22 +28,33 @@ class HomeScreen extends StatelessWidget {
           children: [
 
 
-              Card(
-                margin: EdgeInsets.all(15),
-                elevation: 2,
-                child: Container(
-                    margin: EdgeInsets.all(15),
-                    height: 40,
-                    width: double.infinity,
-                    child: Column(
-                      children: [
-                        Text(myPerson.name),
-                        Text(myPerson.id),
-                      ],
-                    )
+              ...myList.map(
+                      (myPerson) => Card(
+                        color: myPerson.pClass,
+                        margin: EdgeInsets.all(15),
+                        elevation: 2,
+                        child: Container(
+                            alignment: Alignment.centerLeft,
+                            margin: EdgeInsets.all(15),
+                            height: 40,
+                            width: double.infinity,
+                            child: Column(
+                              children: [
+                                Text(myPerson.name),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(myPerson.id),
+                                    Text(myPerson.height.toString()),
+                                  ],
+                                )
+                              ],
+                            )
 
-                ),
-              )
+                        ),
+                      )
+              ).toList()
+
 
 
           ],
@@ -47,3 +63,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
