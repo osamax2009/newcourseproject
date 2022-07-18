@@ -5,7 +5,11 @@ class Person {
   String id;
   String name;
   double height;
-  Color  pClass;
+  Color?  pClass;
 
-  Person(this.id, this.name, this.height, this.pClass);
+  Person({
+    required this.id,
+    required  this.name,
+    required  this.height,
+    this.pClass});
 }
