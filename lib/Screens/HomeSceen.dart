@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/Models/Product.dart';
 
+import '../Components/ItemShow.dart';
 import '../Models/Person.dart';
 
 
@@ -60,32 +61,11 @@ class HomeScreen extends StatelessWidget {
           ),
           itemCount: myproductList.length,
           itemBuilder: ( cx, i){
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child:
-              GridTile(
+            return GestureDetector(
+              onTap: (){
 
-                child: Image(
-                    image: NetworkImage(myproductList[i].imageUrl),
-                  fit: BoxFit.fill,
-                ),
-                footer: GridTileBar(
-                  backgroundColor: Colors.black54,
-                  title: Center(
-                    child: Text(myproductList[i].title,
-                      style: TextStyle(color: Colors.orange,fontSize: 14),
-                    ),
-                  ),
-                  leading: Icon(
-                    Icons.add_shopping_cart ,
-                    color: Colors.orange,
-                  ),
-                  trailing:Icon(
-                    Icons.favorite ,
-                    color: Colors.orange,
-                  ) ,
-                ),
-              ),
+              },
+                child: ItemShow(myproduct: myproductList[i])
             );
           }
 
@@ -93,4 +73,5 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
 
