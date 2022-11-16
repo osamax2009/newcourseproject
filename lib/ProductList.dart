@@ -2,9 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/models/Product.dart';
 
-class ProductList extends StatelessWidget {
+class ProductList extends StatefulWidget {
    ProductList({Key? key}) : super(key: key);
 
+  @override
+  State<ProductList> createState() => _ProductListState();
+}
+
+class _ProductListState extends State<ProductList> {
     List<Product> myproducts = [
       Product(
         id: 'p1',
@@ -46,9 +51,12 @@ class ProductList extends StatelessWidget {
 
     var cartList = [] ;
 
-
-
-
+    addtomycartlist(id){
+      setState(() {
+        cartList.add(id);
+      });
+      print(cartList);
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -57,23 +65,37 @@ class ProductList extends StatelessWidget {
           padding: EdgeInsets.all(10),
 
           itemCount: myproducts.length,
-          itemBuilder: (cx,i)=>ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-              child: GridTile(
-                  child: Image.network(myproducts[i].imageUrl,fit: BoxFit.fill,),
-                footer:
-                GridTileBar(
-                  backgroundColor: Colors.black87,
-                  title: Text(myproducts[i].title,
-                      style: TextStyle(
-                        color: Colors.orange,
-                      ),
-                    textAlign: TextAlign.center,
-                  ),
-                  leading: Icon(Icons.add_shopping_cart,color: Colors.orange),
-                  trailing:Icon(Icons.favorite,color: Colors.orange),
-                ) ,
+          itemBuilder: (cx,i)=>Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: cartList.contains(myproducts[i].id)? Colors.orange: Colors.transparent,
+                width: 1
               )
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+                child: GridTile(
+                    child: Image.network(myproducts[i].imageUrl,fit: BoxFit.fill,),
+                  footer:
+                  GridTileBar(
+                    backgroundColor: Colors.black87,
+                    title: Text(myproducts[i].title,
+                        style: TextStyle(
+                          color: Colors.orange,
+                        ),
+                      textAlign: TextAlign.center,
+                    ),
+                    leading:  IconButton(
+                      icon: Icon( Icons.add_shopping_cart,color: Colors.orange),
+                      onPressed: (){
+                        addtomycartlist(myproducts[i].id);
+                      },
+                    ),
+                    trailing:Icon(Icons.favorite,color: Colors.orange),
+                  ) ,
+                )
+            ),
           ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 10,
