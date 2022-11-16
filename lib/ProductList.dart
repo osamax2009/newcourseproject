@@ -67,53 +67,65 @@ class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GridView.builder(
-          padding: EdgeInsets.all(10),
+      body: Column(
+        children: [
+          Flexible(
+            child: GridView.builder(
+                padding: EdgeInsets.all(10),
 
-          itemCount: myproducts.length,
-          itemBuilder: (cx,i)=>Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: cartList.contains(myproducts[i].id)? Colors.orange: Colors.transparent,
-                width: 1
-              )
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-                child: GridTile(
-                    child: Image.network(myproducts[i].imageUrl,fit: BoxFit.fill,),
-                  footer:
-                  GridTileBar(
-                    backgroundColor: Colors.black87,
-                    title: Text(myproducts[i].title,
-                        style: TextStyle(
-                          color: Colors.orange,
-                        ),
-                      textAlign: TextAlign.center,
-                    ),
-                    leading:  IconButton(
-                      icon: Icon( Icons.add_shopping_cart,color: Colors.orange),
-                      onPressed: (){
+                itemCount: myproducts.length,
+                itemBuilder: (cx,i)=>Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: cartList.contains(myproducts[i].id)? Colors.orange: Colors.transparent,
+                      width: 1
+                    )
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                      child: GridTile(
+                          child: Image.network(myproducts[i].imageUrl,fit: BoxFit.fill,),
+                        footer:
+                        GridTileBar(
+                          backgroundColor: Colors.black87,
+                          title: Text(myproducts[i].title,
+                              style: TextStyle(
+                                color: Colors.orange,
+                              ),
+                            textAlign: TextAlign.center,
+                          ),
+                          leading:  IconButton(
+                            icon: Icon( Icons.add_shopping_cart,color: Colors.orange),
+                            onPressed: (){
 
-                        cartList.contains(myproducts[i].id)?
-                            removeFromMycartlist(myproducts[i].id)
-                            :
-                        addtomycartlist(myproducts[i].id);
-                      },
-                    ),
-                    trailing:Icon(Icons.favorite,color: Colors.orange),
-                  ) ,
-                )
+                              cartList.contains(myproducts[i].id)?
+                                  removeFromMycartlist(myproducts[i].id)
+                                  :
+                              addtomycartlist(myproducts[i].id);
+                            },
+                          ),
+                          trailing:Icon(Icons.favorite,color: Colors.orange),
+                        ) ,
+                      )
+                  ),
+                ),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                      crossAxisCount: 2,
+                      childAspectRatio: 3/2
+               ),
+
             ),
           ),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                crossAxisCount: 2,
-                childAspectRatio: 3/2
-         ),
-
+          Container(
+            margin: EdgeInsets.all(20),
+              width: double.infinity,
+              height: 60,
+              child: ElevatedButton(onPressed: (){}, child: Text("submit"))
+          )
+        ],
       )
     );
   }
