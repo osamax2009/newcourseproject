@@ -52,9 +52,13 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridView.builder(
+          padding: EdgeInsets.all(10),
 
           itemCount: myproducts.length,
-          itemBuilder: (cx,i)=>Image.network(myproducts[i].imageUrl),
+          itemBuilder: (cx,i)=>ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+              child: Image.network(myproducts[i].imageUrl,fit: BoxFit.fill,)
+          ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
