@@ -57,6 +57,12 @@ class _ProductListState extends State<ProductList> {
       });
       print(cartList);
     }
+    removeFromMycartlist(id){
+      setState(() {
+        cartList.remove(id);
+      });
+      print(cartList);
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +95,10 @@ class _ProductListState extends State<ProductList> {
                     leading:  IconButton(
                       icon: Icon( Icons.add_shopping_cart,color: Colors.orange),
                       onPressed: (){
+
+                        cartList.contains(myproducts[i].id)?
+                            removeFromMycartlist(myproducts[i].id)
+                            :
                         addtomycartlist(myproducts[i].id);
                       },
                     ),
