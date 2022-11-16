@@ -44,6 +44,8 @@ class ProductList extends StatelessWidget {
 
     ];
 
+    var cartList = [] ;
+
 
 
 
@@ -57,7 +59,21 @@ class ProductList extends StatelessWidget {
           itemCount: myproducts.length,
           itemBuilder: (cx,i)=>ClipRRect(
             borderRadius: BorderRadius.circular(20),
-              child: Image.network(myproducts[i].imageUrl,fit: BoxFit.fill,)
+              child: GridTile(
+                  child: Image.network(myproducts[i].imageUrl,fit: BoxFit.fill,),
+                footer:
+                GridTileBar(
+                  backgroundColor: Colors.black87,
+                  title: Text(myproducts[i].title,
+                      style: TextStyle(
+                        color: Colors.orange,
+                      ),
+                    textAlign: TextAlign.center,
+                  ),
+                  leading: Icon(Icons.add_shopping_cart,color: Colors.orange),
+                  trailing:Icon(Icons.favorite,color: Colors.orange),
+                ) ,
+              )
           ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 10,
