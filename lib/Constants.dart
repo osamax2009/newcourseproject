@@ -42,3 +42,4 @@ final List<Product> myproducts = [
 ];
 
 
+const Color primaryColor = Color(0xffEC8A1B);

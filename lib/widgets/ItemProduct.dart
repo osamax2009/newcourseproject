@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/Constants.dart';
 
 import '../models/Product.dart';
 
@@ -32,15 +33,15 @@ class ItemProduct extends StatelessWidget {
               backgroundColor: Colors.black87,
               title: Text(myproduct.title,
                 style: TextStyle(
-                  color: Colors.orange,
+                  color: primaryColor,
                 ),
                 textAlign: TextAlign.center,
               ),
               leading:  IconButton(
-                icon: Icon( Icons.add_shopping_cart,color: Colors.orange),
+                icon: Icon( Icons.add_shopping_cart,color: primaryColor),
                 onPressed: press
               ),
-              trailing:Icon(Icons.favorite,color: Colors.orange),
+              trailing:Icon(Icons.favorite,color: primaryColor),
             ) ,
           )
       ),

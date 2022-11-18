@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:untitled2/DetailsScreen.dart';
 import 'package:untitled2/models/Product.dart';
 import 'package:untitled2/widgets/ItemProduct.dart';
 
@@ -39,17 +40,24 @@ class _ProductListState extends State<ProductList> {
                 padding: EdgeInsets.all(10),
 
                 itemCount: myproducts.length,
-                itemBuilder: (cx,i)=>ItemProduct(
-                    myproducts[i],
-                    (){
+                itemBuilder: (cx,i)=>GestureDetector(
+                  onTap: (){
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=> DetailsScreen(myproducts[i] , myproducts))
+                    );
+                  },
+                  child: ItemProduct(
+                      myproducts[i],
+                      (){
 
-                          cartList.contains(myproducts[i].id)?
-                          removeFromMycartlist(myproducts[i].id)
-                          :
-                          addtomycartlist(myproducts[i].id);
-                    },
-                    cartList.contains(myproducts[i].id)
+                            cartList.contains(myproducts[i].id)?
+                            removeFromMycartlist(myproducts[i].id)
+                            :
+                            addtomycartlist(myproducts[i].id);
+                      },
+                      cartList.contains(myproducts[i].id)
 
+                  ),
                 ),
 
 
