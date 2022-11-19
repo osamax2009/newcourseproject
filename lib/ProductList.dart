@@ -52,7 +52,7 @@ class _ProductListState extends State<ProductList> {
         leading: IconButton(
           icon: Icon(Icons.add),
           onPressed: (){
-            context.watch<ProductProvider>().incressToList(newProduct);
+            context.read<ProductProvider>().incressToList(newProduct);
           },
         ),
         title: Text("Product Screen"),
