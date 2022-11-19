@@ -42,7 +42,8 @@ class _ProductListState extends State<ProductList> {
             radius: 70,
             backgroundColor: primaryColor,
             child: Image.network(
-              context.watch<UserProvider>().user.image!
+              context.watch<UserProvider>().user.image!,
+              fit: BoxFit.fill,
             ),
           ),
         ]
