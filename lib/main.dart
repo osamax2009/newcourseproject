@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:untitled2/ProductList.dart';
+import 'package:untitled2/Provider/UserProvider.dart';
 
 import 'HomeScreen.dart';
 
@@ -13,10 +15,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SafeArea(
-          child: ProductList()
-      ) ,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context)=>UserProvider())
+      ],
+
+      child:
+         MaterialApp(
+          home: SafeArea(
+              child: ProductList()
+          ) ,
+        )
+
     );
   }
 }

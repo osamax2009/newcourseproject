@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:untitled2/DetailsScreen.dart';
+import 'package:untitled2/Provider/UserProvider.dart';
 import 'package:untitled2/models/Product.dart';
 import 'package:untitled2/widgets/ItemProduct.dart';
 
@@ -33,6 +35,18 @@ class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Product Screen"),
+        actions: [
+          CircleAvatar(
+            radius: 70,
+            backgroundColor: primaryColor,
+            child: Image.network(
+              context.watch<UserProvider>().user.image!
+            ),
+          ),
+        ]
+      ),
       body: Column(
         children: [
           Flexible(
