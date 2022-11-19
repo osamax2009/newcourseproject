@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/DetailsScreen.dart';
+import 'package:untitled2/Provider/ProductProvider.dart';
 import 'package:untitled2/Provider/UserProvider.dart';
 import 'package:untitled2/models/Product.dart';
 import 'package:untitled2/widgets/ItemProduct.dart';
@@ -32,19 +33,36 @@ class _ProductListState extends State<ProductList> {
       print(cartList);
     }
 
+
+
+    Product newProduct = Product(
+      id: 'p1',
+      title: 'Red shoos',
+      description: 'A Red shoos- it is pretty red!',
+      price: 24.99,
+      imageUrl:
+      'https://5.imimg.com/data5/AY/UD/ZK/ANDROID-96526326/adidas-falcon-1-jpg-500x500.jpg',
+    );
+
   @override
   Widget build(BuildContext context) {
+      var thegetlistproduct = context.watch<ProductProvider>().myproducts ;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.add),
+          onPressed: (){
+            context.watch<ProductProvider>().incressToList(newProduct);
+          },
+        ),
         title: Text("Product Screen"),
         actions: [
           CircleAvatar(
-            radius: 70,
+
+            radius: 50,
             backgroundColor: primaryColor,
-            child: Image.network(
-              context.watch<UserProvider>().user.image!,
-              fit: BoxFit.fill,
-            ),
+            backgroundImage: NetworkImage( context.watch<UserProvider>().user.image!,
+             )
           ),
         ]
       ),
@@ -54,23 +72,23 @@ class _ProductListState extends State<ProductList> {
             child: GridView.builder(
                 padding: EdgeInsets.all(10),
 
-                itemCount: myproducts.length,
+                itemCount: thegetlistproduct.length,
                 itemBuilder: (cx,i)=>GestureDetector(
                   onTap: (){
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context)=> DetailsScreen(myproducts[i] , myproducts))
+                        MaterialPageRoute(builder: (context)=> DetailsScreen(thegetlistproduct[i]))
                     );
                   },
                   child: ItemProduct(
-                      myproducts[i],
+                      thegetlistproduct[i],
                       (){
 
-                            cartList.contains(myproducts[i].id)?
-                            removeFromMycartlist(myproducts[i].id)
+                            cartList.contains(thegetlistproduct[i].id)?
+                            removeFromMycartlist(thegetlistproduct[i].id)
                             :
-                            addtomycartlist(myproducts[i].id);
+                            addtomycartlist(thegetlistproduct[i].id);
                       },
-                      cartList.contains(myproducts[i].id)
+                      cartList.contains(thegetlistproduct[i].id)
 
                   ),
                 ),

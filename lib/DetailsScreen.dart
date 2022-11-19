@@ -1,19 +1,23 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'Provider/ProductProvider.dart';
 import 'models/Product.dart';
 
 class DetailsScreen extends StatelessWidget {
 
 
-  DetailsScreen(this.myproduct,this.relatedList);
+  DetailsScreen(this.myproduct);
 
   final Product myproduct ;
-  final List<Product> relatedList ;
+
 
   @override
   Widget build(BuildContext context) {
+     List<Product> relatedList = context.watch<ProductProvider>().myproducts  ;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(myproduct.title),

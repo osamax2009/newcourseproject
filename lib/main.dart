@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled2/ProductList.dart';
+import 'package:untitled2/Provider/ProductProvider.dart';
 import 'package:untitled2/Provider/UserProvider.dart';
 
 import 'HomeScreen.dart';
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context)=>UserProvider())
+        ChangeNotifierProvider(create: (context)=>UserProvider()),
+        ChangeNotifierProvider(create: (context)=>ProductProvider()),
       ],
 
       child:
