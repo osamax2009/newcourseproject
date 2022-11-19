@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled2/Controller/Services.dart';
 import 'package:untitled2/DetailsScreen.dart';
 import 'package:untitled2/Provider/ProductProvider.dart';
 import 'package:untitled2/Provider/UserProvider.dart';
@@ -8,6 +9,7 @@ import 'package:untitled2/models/Product.dart';
 import 'package:untitled2/widgets/ItemProduct.dart';
 
 import 'Constants.dart';
+import 'Wrapper.dart';
 
 class ProductList extends StatefulWidget {
    ProductList({Key? key}) : super(key: key);
@@ -17,7 +19,7 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
-
+Services services = Services();
     var cartList = [] ;
 
     addtomycartlist(id){
@@ -52,14 +54,22 @@ class _ProductListState extends State<ProductList> {
         leading: IconButton(
           icon: Icon(Icons.add),
           onPressed: (){
-            context.watch<ProductProvider>().incressToList(newProduct);
+            context.read<ProductProvider>().incressToList(newProduct);
           },
         ),
         title: Text("Product Screen"),
         actions: [
-          CircleAvatar(
+          IconButton(onPressed: (){
+            services.logOut();
+            Navigator.push(context,
+              MaterialPageRoute(builder: (context)=>Wrapper())
+            );
 
-            radius: 50,
+
+
+          }, icon: Icon(Icons.logout)),
+          CircleAvatar(
+            radius: 25,
             backgroundColor: primaryColor,
             backgroundImage: NetworkImage( context.watch<UserProvider>().user.image!,
              )

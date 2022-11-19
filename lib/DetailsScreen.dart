@@ -16,7 +16,7 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     List<Product> relatedList = context.watch<ProductProvider>().myproducts  ;
+     List<Product> relatedList = context.read<ProductProvider>().myproducts  ;
 
     return Scaffold(
       appBar: AppBar(
