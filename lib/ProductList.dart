@@ -10,6 +10,7 @@ import 'package:untitled2/widgets/ItemProduct.dart';
 
 import 'Constants.dart';
 import 'Wrapper.dart';
+import 'widgets/DefaultButton.dart';
 
 class ProductList extends StatefulWidget {
    ProductList({Key? key}) : super(key: key);
@@ -115,14 +116,10 @@ Services services = Services();
 
             ),
           ),
-          Container(
-            margin: EdgeInsets.all(20),
-              width: double.infinity,
-              height: 60,
-              child: ElevatedButton(onPressed: (){}, child: Text("submit"))
-          )
+          DefaultButton(press: (){}, text:"submit")
         ],
       )
     );
   }
 }
+
