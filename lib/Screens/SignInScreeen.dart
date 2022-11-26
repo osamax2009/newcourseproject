@@ -15,6 +15,7 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   Services services = Services();
+  int currentpage = 0 ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,40 +39,64 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
 
 
-            Flexible(
-              child: PageView.builder(
-                  itemCount: splashContaint.length,
-                  itemBuilder: (cx,i)=>Container(
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.all(15),
-                          height: 225,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: Image(
-                              image: AssetImage(splashContaint[i]['image']!),
-                              fit: BoxFit.fill,
+            Expanded(
+              flex: 3,
+              child: SizedBox(
+                child: PageView.builder(
+                  onPageChanged:(value){
+                    setState(() {
+                      currentpage = value ;
+                    });
+                  } ,
+                    itemCount: splashContaint.length,
+                    itemBuilder: (cx,i)=>Container(
+                      child: Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.all(15),
+                            height: 170,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Image(
+                                image: AssetImage(splashContaint[i]['image']!),
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.all(15),
-                          height: 225,
-                          child: Text(
-                            splashContaint[i]['text']!,
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: primaryColor,
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
+                          Container(
+                            margin: const EdgeInsets.all(15),
+                            child: Text(
+                              splashContaint[i]['text']!,
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
+
+
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:
+                      List.generate(
+                          splashContaint.length,
+                              (index) => buildDot(index))
+
+
                   ),
-
-
+                  Spacer()
+                ],
               ),
             ),
 
@@ -98,4 +123,20 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
+
+  Widget buildDot(index) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 250),
+      margin: EdgeInsets.only(right:5 ),
+      height: 6,
+      width: currentpage == index ? 20 : 6,
+      decoration: BoxDecoration(
+          color: currentpage == index  ? primaryColor : Color(0xFFD8D8D8),
+          borderRadius: BorderRadius.circular(3)
+      ),
+    );
+  }
+
 }
+
+
