@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lorem/flutter_lorem.dart';
 
 import 'models/Product.dart';
 
@@ -13,11 +14,11 @@ var splashContaint = [
       'image':"assets/images/splash_1.png"
   },
   {
-    'text':"Shop for our app and you can get all the gifts, we wish you great new experience",
+    'text':lorem(paragraphs: 1, words: 8),
     'image':"assets/images/splash_2.png"
   },
   {
-    'text':"Shop for our app and you can get all the gifts, we wish you great new experience",
+    'text':lorem(paragraphs: 1, words: 8),
     'image':"assets/images/splash_3.png"
   },
 

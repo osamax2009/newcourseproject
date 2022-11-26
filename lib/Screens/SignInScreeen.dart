@@ -16,111 +16,191 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   Services services = Services();
   int currentpage = 0 ;
+
+  double screenHeight = 0;
+  double signScreen = 0;
+  double signUpScreen = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("SignInScreen"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+
+    screenHeight = MediaQuery.of(context).size.height ;
+
+
+
+    return  Scaffold(
+      body: Stack(
+
           children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(
-                "My Shopping \n App",
-                style: TextStyle(
-                    fontSize: 35,
-                    color: primaryColor,
-                    fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-            ),
+            Container(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(
+                        "My Shopping \n App",
+                        style: TextStyle(
+                            fontSize: 35,
+                            color: primaryColor,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
 
 
-            Expanded(
-              flex: 3,
-              child: SizedBox(
-                child: PageView.builder(
-                  onPageChanged:(value){
-                    setState(() {
-                      currentpage = value ;
-                    });
-                  } ,
-                    itemCount: splashContaint.length,
-                    itemBuilder: (cx,i)=>Container(
-                      child: Column(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.all(15),
-                            height: 170,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: Image(
-                                image: AssetImage(splashContaint[i]['image']!),
-                                fit: BoxFit.fill,
+                    Expanded(
+                      flex: 3,
+                      child: SizedBox(
+                        child: PageView.builder(
+                          onPageChanged:(value){
+                            setState(() {
+                              currentpage = value ;
+                            });
+                          } ,
+                            itemCount: splashContaint.length,
+                            itemBuilder: (cx,i)=>Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.all(15),
+                                    height: 170,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(30),
+                                      child: Image(
+                                        image: AssetImage(splashContaint[i]['image']!),
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.all(15),
+                                    child: Text(
+                                      splashContaint[i]['text']!,
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: primaryColor,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
+
+
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children:
+                              List.generate(
+                                  splashContaint.length,
+                                      (index) => buildDot(index))
+
+
                           ),
-                          Container(
-                            margin: const EdgeInsets.all(15),
-                            child: Text(
-                              splashContaint[i]['text']!,
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
+                          Spacer()
                         ],
                       ),
                     ),
 
 
+
+
+
+                    DefaultButton(press: (){
+                      setState(() {
+                        signScreen = 400;
+                        print(signScreen);
+                      });
+
+                    }, text: "Continue...")
+
+
+
+
+
+                    // TextButton(
+                    //     onPressed: (){
+                    //       services.setToken();
+                    //       Navigator.push(context,
+                    //           MaterialPageRoute(builder: (context)=>Wrapper())
+                    //       );
+                    //
+                    // }, child: Text("Login..."))
+                  ],
                 ),
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:
-                      List.generate(
-                          splashContaint.length,
-                              (index) => buildDot(index))
+            AnimatedContainer(
+              duration: Duration(milliseconds: 500),
+              transform: Matrix4.translationValues(1, screenHeight - signScreen, 0),
+              height: screenHeight  - signScreen,
+              decoration: BoxDecoration(
+                color: Colors.orange,
+                borderRadius:BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)
+                )
+              ),
+              child: Center(
+              child:  Column(
+                  children: [
+                    DefaultButton(press: (){
+                      setState(() {
+                        signScreen = 0;
+                      });
 
+                    }, text: "Sign Up"),
+                    DefaultButton(press: (){
+                      setState(() {
+                        signUpScreen = 500;
+                      });
 
-                  ),
-                  Spacer()
-                ],
+                    }, text: "Sign Up")
+                  ],
+                )
               ),
             ),
+            AnimatedContainer(
+              duration: Duration(milliseconds: 500),
+              transform: Matrix4.translationValues(1, screenHeight - signUpScreen, 0),
+              height: screenHeight  - signScreen,
+              decoration: BoxDecoration(
+                  color: Colors.purple,
+                  borderRadius:BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30)
+                  )
+              ),
+              child: Center(
+                  child:  Column(
+                    children: [
+                      DefaultButton(press: (){
+                        setState(() {
+                          signScreen = 0;
+                        });
 
+                      }, text: "Sign Up"),
+                      DefaultButton(press: (){
+                        setState(() {
+                          signUpScreen = 500;
+                        });
 
-
-
-
-            DefaultButton(press: (){}, text: "Continue...")
-
-
-
-
-
-            // TextButton(
-            //     onPressed: (){
-            //       services.setToken();
-            //       Navigator.push(context,
-            //           MaterialPageRoute(builder: (context)=>Wrapper())
-            //       );
-            //
-            // }, child: Text("Login..."))
+                      }, text: "Sign Up")
+                    ],
+                  )
+              ),
+            )
           ],
         ),
-      ),
+
     );
   }
 

@@ -18,11 +18,8 @@ class DefaultButton extends StatelessWidget {
         margin: EdgeInsets.all(10),
         width: double.infinity,
         height: 60,
-        child: ElevatedButton(onPressed: (){
-
-
-        },
-            child: Text("submit"))
+        child: ElevatedButton(onPressed: press,
+            child: Text(text))
     );
   }
 }
