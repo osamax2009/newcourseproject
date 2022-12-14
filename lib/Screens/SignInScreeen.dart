@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:untitled2/Controller/Services.dart';
+import 'package:untitled2/HomeScreen.dart';
 import 'package:untitled2/Screens/%D9%8DSplashScreen.dart';
 import 'package:untitled2/SizeConfigration.dart';
 import 'package:untitled2/widgets/DefaultButton.dart';
@@ -126,7 +128,10 @@ class SignInWidget extends StatelessWidget {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  SnackBar _snackBarError = SnackBar(
+    content: Text("information not Valid"),
+    backgroundColor: Colors.red,
+  );
 
 
   SignInWidget({
@@ -195,11 +200,15 @@ class SignInWidget extends StatelessWidget {
             ),
             DefaultButton(press: (){
 
-              if (emailController.text.isNotEmpty && passwordController.text.length < 9){
-                print("am pressing ");
+              if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty && passwordController.text.length >= 8){
+
+                register(emailController.text,passwordController.text,context);
+
+
+
               }else {
 
-                print(" information not valid  ");
+               ScaffoldMessenger.of(context).showSnackBar(_snackBarError);
 
               }
 
@@ -213,6 +222,22 @@ class SignInWidget extends StatelessWidget {
       ),
     );
   }
+
+  register(email, password ,context){
+    var credential ;
+    FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password).
+    then((value) => credential = value);
+
+    if  (credential.user != null){
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+    }
+
+
+  }
+
+
+
+
 }
 
 
