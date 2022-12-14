@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled2/Controller/Services.dart';
 import 'package:untitled2/ProductList.dart';
+import 'package:untitled2/SizeConfigration.dart';
 
 import 'Screens/SignInScreeen.dart';
 
@@ -17,6 +18,8 @@ Services services = Services();
 
   @override
   Widget build(BuildContext context) {
+
+    SizeConfig().init(context);
     return
 
         FutureBuilder<String>(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:untitled2/Controller/Services.dart';
+import 'package:untitled2/Screens/%D9%8DSplashScreen.dart';
+import 'package:untitled2/SizeConfigration.dart';
 import 'package:untitled2/widgets/DefaultButton.dart';
 
 import '../Constants.dart';
@@ -15,15 +17,37 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   Services services = Services();
-  int currentpage = 0 ;
 
-  double screenHeight = 0;
+
+  double screenHeight = SizeConfig.screenHeight! ;
   double signScreen = 0;
   double signUpScreen = 0;
+
+  double screenOperator1  = 0 ;
+  double screenOperator2  = 0 ;
+
+  int pageState = 0 ;
   @override
   Widget build(BuildContext context) {
 
-    screenHeight = MediaQuery.of(context).size.height ;
+
+
+    switch(pageState) {
+      case 0 :
+        screenOperator1 = 0 ;
+        screenOperator2 = 0 ;
+        break;
+      case 1 :
+        screenOperator1 = screenHeight  * 0.62 ;
+        screenOperator2 = 0 ;
+        break;
+      case 2:
+        screenOperator2 = screenHeight  * 0.62 ;
+        screenOperator1 = 0 ;
+
+
+
+    }
 
 
 
@@ -31,192 +55,164 @@ class _SignInScreenState extends State<SignInScreen> {
       body: Stack(
 
           children: [
-            Container(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text(
-                        "My Shopping \n App",
-                        style: TextStyle(
-                            fontSize: 35,
-                            color: primaryColor,
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-
-
-                    Expanded(
-                      flex: 3,
-                      child: SizedBox(
-                        child: PageView.builder(
-                          onPageChanged:(value){
-                            setState(() {
-                              currentpage = value ;
-                            });
-                          } ,
-                            itemCount: splashContaint.length,
-                            itemBuilder: (cx,i)=>Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.all(15),
-                                    height: 170,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30),
-                                      child: Image(
-                                        image: AssetImage(splashContaint[i]['image']!),
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.all(15),
-                                    child: Text(
-                                      splashContaint[i]['text']!,
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: primaryColor,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children:
-                              List.generate(
-                                  splashContaint.length,
-                                      (index) => buildDot(index))
-
-
-                          ),
-                          Spacer()
-                        ],
-                      ),
-                    ),
-
-
-
-
-
-                    DefaultButton(press: (){
-                      setState(() {
-                        signScreen = 400;
-                        print(signScreen);
-                      });
-
-                    }, text: "Continue...")
-
-
-
-
-
-                    // TextButton(
-                    //     onPressed: (){
-                    //       services.setToken();
-                    //       Navigator.push(context,
-                    //           MaterialPageRoute(builder: (context)=>Wrapper())
-                    //       );
-                    //
-                    // }, child: Text("Login..."))
-                  ],
-                ),
-              ),
+            GestureDetector(
+              onTap: (){
+                setState(() {
+                  pageState = 0 ;
+                });
+              },
+              child: SplashScreen((){
+                setState(() {
+                  pageState = 1 ;
+                });
+              }),
             ),
+            SignInWidget(screenHeight: screenHeight, screenOperator1: screenOperator1 ,pressme:
+            (){
+              setState(() {
+                pageState = 2;
+                print ("screenOperator2 $screenOperator2");
+                print ("screenOperator1 $screenOperator1");
+                print ("pageState $pageState");
+              });
+            }
+
+
+              ,),
             AnimatedContainer(
-              duration: Duration(milliseconds: 500),
-              transform: Matrix4.translationValues(1, screenHeight - signScreen, 0),
-              height: screenHeight  - signScreen,
+              padding: EdgeInsets.all(10),
+              duration: Duration(milliseconds: 300),
+              transform: Matrix4.translationValues(0, screenHeight - screenOperator2, 0),
+
+
               decoration: BoxDecoration(
                 color: Colors.orange,
-                borderRadius:BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30)
-                )
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(25),
+                  topLeft: Radius.circular(25),
+                ),
+
               ),
-              child: Center(
-              child:  Column(
-                  children: [
-                    DefaultButton(press: (){
-                      setState(() {
-                        signScreen = 0;
-                      });
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
 
-                    }, text: "Sign Up"),
-                    DefaultButton(press: (){
-                      setState(() {
-                        signUpScreen = 500;
-                      });
+                  DefaultButton(press: (){
+                    setState(() {
+                      pageState = 1;
+                      print ("screenOperator2 $screenOperator2");
+                      print ("screenOperator1 $screenOperator1");
+                      print ("pageState $pageState");
+                    });
+                  }, text: "Go To Register",myicon: Icon(Icons.app_registration)),
 
-                    }, text: "Sign Up")
-                  ],
-                )
-              ),
-            ),
-            AnimatedContainer(
-              duration: Duration(milliseconds: 500),
-              transform: Matrix4.translationValues(1, screenHeight - signUpScreen, 0),
-              height: screenHeight  - signScreen,
-              decoration: BoxDecoration(
-                  color: Colors.purple,
-                  borderRadius:BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)
-                  )
-              ),
-              child: Center(
-                  child:  Column(
-                    children: [
-                      DefaultButton(press: (){
-                        setState(() {
-                          signScreen = 0;
-                        });
-
-                      }, text: "Sign Up"),
-                      DefaultButton(press: (){
-                        setState(() {
-                          signUpScreen = 500;
-                        });
-
-                      }, text: "Sign Up")
-                    ],
-                  )
+                ],
               ),
             )
+
+
           ],
         ),
 
     );
   }
 
-  Widget buildDot(index) {
+
+}
+
+class SignInWidget extends StatelessWidget {
+  GlobalKey _Globalkey = GlobalKey<FormState>();
+
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+
+
+  SignInWidget({
+    Key? key,
+    required this.screenHeight,
+    required this.screenOperator1,
+    required this.pressme
+  }) : super(key: key);
+
+  final double screenHeight;
+  final double screenOperator1;
+  Function() pressme ;
+
+  @override
+  Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 250),
-      margin: EdgeInsets.only(right:5 ),
-      height: 6,
-      width: currentpage == index ? 20 : 6,
+      padding: EdgeInsets.all(10),
+        duration: Duration(milliseconds: 300),
+      transform: Matrix4.translationValues(0, screenHeight - screenOperator1, 0),
+
+
       decoration: BoxDecoration(
-          color: currentpage == index  ? primaryColor : Color(0xFFD8D8D8),
-          borderRadius: BorderRadius.circular(3)
+          color: Colors.yellow,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(25),
+          topLeft: Radius.circular(25),
+        ),
+
+      ),
+      child: Form(
+        key: _Globalkey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+
+          children: [
+
+
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: DefaultButton(press: pressme, text: "Go To Login",myicon: Icon(Icons.login)),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+              child: TextFormField(
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Email",
+                  suffixIcon: Icon(Icons.email),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+              child: TextFormField(
+                controller: passwordController,
+                obscureText: true,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "password",
+                  suffixIcon: Icon(Icons.lock),
+                ),
+              ),
+            ),
+            DefaultButton(press: (){
+
+              if (emailController.text.isNotEmpty && passwordController.text.length < 9){
+                print("am pressing ");
+              }else {
+
+                print(" information not valid  ");
+
+              }
+
+
+
+
+            }, text: "Register Account",myicon: Icon(Icons.assignment_turned_in)),
+
+          ],
+        ),
       ),
     );
   }
-
 }
 
 
